@@ -7,7 +7,6 @@
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta name="referrer" content="no-referrer" />
     <title>IMPERIAL SOVEREIGN ARCHITECTURE v1.2.0 (PRODUCTION MAINNET)</title>
-
     <script>
         if (window.top !== window.self) {
             document.documentElement.replaceChildren();
@@ -15,11 +14,15 @@
         }
     </script>
     
-    <!-- CSP Compliance Layer -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: ar:; media-src 'self' blob: https: ar:; connect-src 'self' https://base-mainnet.g.alchemy.com https://mainnet.base.org https://base.llamarpc.com https://base-rpc.publicnode.com https://mainnet.irys.xyz https://node1.irys.xyz https://arweave.net wss://*.walletconnect.com wss://*.walletconnect.org https://*.walletconnect.com https://*.walletconnect.org https://api.web3modal.com https://api.reown.com wss:; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'  https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: ar:; media-src 'self' blob: https: ar:; connect-src 'self' https://base-mainnet.g.alchemy.com https://mainnet.base.org https://base.llamarpc.com https://base-rpc.publicnode.com https://mainnet.irys.xyz https://node1.irys.xyz https://arweave.net wss://*.walletconnect.com wss://*.walletconnect.org https://*.walletconnect.com https://*.walletconnect.org https://api.web3modal.com https://api.reown.com wss:; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'self';">
+
+    <style>
+        html, body { background-color: #000000 !important; }
+        body { visibility: hidden; }
+        body.app-ready { visibility: visible; }
+    </style>
 
     <link rel="stylesheet" href="./style.css">
-    
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.1/dist/index.umd.js"></script>
     <script defer src="https://unpkg.com/@irys/sdk@0.1.1/build/bundle.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -80,39 +83,140 @@
         }
         .btn-gold-master:disabled { filter: grayscale(100%); opacity: 0.4; cursor: not-allowed; }
 
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
-            gap: 6px;
+        .btn-rebirth-bright {
+            background: linear-gradient(90deg, #fde047 0%, #fbbf24 50%, #fde047 100%);
+            color: #000; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 35px rgba(253, 224, 71, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid #fffbeb;
+            will-change: transform, box-shadow;
+        }
+        .btn-rebirth-bright:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 0 45px rgba(253, 224, 71, 0.7);
+            cursor: pointer;
         }
 
-        /* Explicit CSS Layer for Dynamic Matrix Nodes (Anti-Purge) */
-        .matrix-node {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            aspect-ratio: 1 / 1 !important;
-            width: 100% !important;
-            background-color: #020617 !important;
-            border-radius: 0.375rem !important;
-            cursor: pointer !important;
-            font-size: 0.75rem !important;
-            font-weight: 700 !important;
-            user-select: none;
-            transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+        .btn-remint-bright {
+            background: linear-gradient(90deg, #f43f5e 0%, #9f1239 50%, #f43f5e 100%);
+            color: #fff; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 35px rgba(244, 63, 94, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid #ffe4e6;
+            will-change: transform, box-shadow;
         }
-        .matrix-node:hover { transform: scale(1.08) !important; z-index: 20 !important; }
-        .rank-prime { border: 1px solid #f59e0b !important; color: #fbbf24 !important; box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.2); }
-        .rank-gold { border: 1px solid #d97706 !important; color: #f59e0b !important; }
-        .rank-silver { border: 1px solid #475569 !important; color: #94a3b8 !important; }
-        .rank-red { border: 1px solid #7f1d1d !important; color: #f87171 !important; }
-        .rank-imperial { border: 2px dashed #fbbf24 !important; color: #fef08a !important; box-shadow: 0 0 12px rgba(251, 191, 36, 0.4) !important; }
+        .btn-remint-bright:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 0 45px rgba(244, 63, 94, 0.6);
+            cursor: pointer;
+        }
 
-        .node-active { background: rgba(234,179,8,0.2) !important; border-color: #f59e0b !important; }
+        .scroll-dark::-webkit-scrollbar { width: 6px; height: 6px; }
+        .scroll-dark::-webkit-scrollbar-track { background: #020203; }
+        .scroll-dark::-webkit-scrollbar-thumb { background: #4c0519; border-radius: 3px; }
+        .scroll-dark::-webkit-scrollbar-thumb:hover { background: #881337; }
+
+        .deed-card-container {
+            perspective: 1200px;
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 9 / 16;
+        }
+        .deed-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .deed-card-inner.flipped { transform: rotateY(180deg); }
+        
+        .deed-card-front, .deed-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; border-radius: 0.75rem; overflow: hidden;
+        }
+        .deed-card-back { transform: rotateY(180deg); }
+
+        .preview-slot {
+            background: linear-gradient(180deg, rgba(20, 10, 15, 0.8) 0%, rgba(2, 2, 4, 0.95) 100%);
+            border: 1px solid rgba(136, 19, 55, 0.4);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .preview-slot:hover, .preview-slot.active {
+            border-color: rgba(217, 119, 6, 0.8);
+            box-shadow: 0 0 30px rgba(217, 119, 6, 0.25);
+        }
+
+        .scanline-bar {
+            position: relative; overflow: hidden;
+            border: 1px solid #1e3a8a; border-radius: 1rem;
+            background-color: #020617;
+        }
+        .scanline-bar::before {
+            content: ''; position: absolute; top: -10%; left: 0;
+            width: 100%; height: 3px; background: #38bdf8;
+            box-shadow: 0 0 25px 8px rgba(56, 189, 248, 0.85);
+            animation: scanline 3.5s linear infinite;
+        }
+        @keyframes scanline {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 1; } 90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        
+        .matrix-node { transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease; content-visibility: auto; contain-intrinsic-size: 2rem; }
+        .matrix-node:hover { transform: scale(1.08); z-index: 20; will-change: transform; }
+        .rank-prime { border: 1px solid #eab308 !important; background: rgba(113, 63, 18, 0.3) !important; box-shadow: 0 0 10px rgba(234, 179, 8, 0.2); }
+        .rank-gold { border: 1px solid #eab308 !important; }
+        .rank-silver { border: 1px solid #94a3b8 !important; }
+        .rank-red { border: 1px solid #dc2626 !important; }
+        .rank-imperial { border: 2px dashed #f59e0b !important; background: rgba(245, 158, 11, 0.1) !important; }
+        
+        .node-active { background: rgba(234,179,8,0.15) !important; border-color: #f59e0b !important; }
+        .node-council { background: rgba(168,85,247,0.15) !important; border-color: #a855f7 !important; }
+
+        .tab-btn.active { background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.6); color: #fbbf24; }
+        .tab-btn:hover:not(.active) { border-color: rgba(245,158,11,0.35); color: #fcd34d; }
+        .tab-btn:active { transform: translateY(1px); }
+
+        :focus { outline: none; }
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 2px solid #fbbf24;
+            outline-offset: 2px;
+            border-radius: 0.4rem;
+        }
+
+        .btn-gold-master:active:not(:disabled),
+        .btn-rebirth-bright:active,
+        .btn-remint-bright:active {
+            transform: translateY(1px) scale(0.99);
+            filter: brightness(0.95);
+        }
+        .btn-gold-master:focus-visible,
+        .btn-rebirth-bright:focus-visible,
+        .btn-remint-bright:focus-visible {
+            outline: 2px solid #fde68a;
+            outline-offset: 3px;
+        }
+
+        .preview-slot:active { transform: scale(0.99); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
     </style>
 </head>
-
 
 <body class="bg-black text-slate-100 font-mono antialiased relative">
 
@@ -300,7 +404,7 @@
         <div class="chiaroscuro-bg p-6 rounded-2xl border border-rose-950">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-900 pb-3 mb-5 gap-2">
                 <div>
-                    <h2 class="text-lg font-black font-cinzel text-rose-400 uppercase tracking-tight">🧬 FORENSIC IDENTITY DNA LAB </h2>
+                    <h2 class="text-lg font-black font-cinzel text-rose-400 uppercase tracking-tight">🧬 FORENSIC IDENTITY DNA LAB (FALANA VS MATA)</h2>
                     <p class="text-[9px] font-mono text-stone-500 uppercase tracking-wide mt-1">RESTRICTED SYSTEM — HOLDER IDENTITY ACCREDITED BY CRYPTOGRAPHY</p>
                 </div>
                 <span id="labAccessBadge" class="bg-rose-950/40 text-rose-400 border border-rose-800 text-[10px] font-black px-2.5 py-1.5 tracking-widest uppercase rounded">HOLDER VERIFIED</span>
@@ -709,10 +813,16 @@
     <section class="chiaroscuro-bg p-6 rounded-2xl mb-6 relative z-10 border border-rose-950">
         <div class="border-b border-stone-900 pb-3 mb-5">
             <h2 class="text-lg font-black font-cinzel text-stone-100 uppercase tracking-tight">👑 Treasury Extraction Operations</h2>
-            <p class="text-[9px] font-mono text-stone-500 uppercase tracking-wide">SECURE DIVIDEND CLAIMING & FIXED EXIT INFRASTRUCTURE SEPARATED</p>
+            <p class="text-[9px] font-mono text-stone-500 uppercase tracking-wide>SECURE DIVIDEND CLAIMING & FIXED EXIT INFRASTRUCTURE SEPARATED</p>
         </div>
+    </div>
+</section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- ===================================================================== -->
+<!-- PHASE 4: IMPERIAL GRID INFRASTRUCTURE (ASYMMETRIC LAYOUT INJECTION)   -->
+<!-- ===================================================================== -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
             <div class="lg:col-span-4 flex flex-col justify-center">
                 <div class="bg-stone-950 p-4 rounded-xl border border-stone-900 shadow-[inset_0_0_20px_rgba(0,0,0,0.9)]">
                     <label class="text-[10px] text-stone-400 font-mono font-bold block mb-2 uppercase tracking-widest text-center border-b border-stone-900 pb-2">TARGET CELL POSITION IDENTIFIER</label>
@@ -3572,6 +3682,10 @@ function setupRealTimeEvents() {
             }
         };
 
+        window.addEventListener('focus', handleWindowFocus);
+        document.body.appendChild(fileInput);
+        fileInput.click();
+    }
 
     function closeNovaWarn(isConfirmed) {
         const modal = document.getElementById('novaWarnModal');
@@ -4504,3 +4618,6 @@ function setupRealTimeEvents() {
  </script>
 </body>
 </html>
+
+    
+    
