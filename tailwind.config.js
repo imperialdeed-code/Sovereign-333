@@ -1,5 +1,23 @@
 module.exports = {
-  content: ["./index.html"],
+  content: [
+    "./index.html",
+    "./*.html",
+    "./*.js",
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
+  safelist: [
+    'matrix-node',
+    'rank-prime',
+    'rank-gold',
+    'rank-golden',
+    'rank-silver',
+    'rank-red',
+    'rank-imperial',
+    'node-active',
+    'aspect-square',
+    'bg-slate-950',
+    'border'
+  ],
   theme: {
     extend: {
       colors: {
